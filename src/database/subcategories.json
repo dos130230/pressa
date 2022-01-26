@@ -1,0 +1,32 @@
+[
+	{
+		"subcat_id" : 1,
+		"cat_id" : 1,
+		"subcat_name" : "Frontend"
+	},
+	{
+		"subcat_id" : 2,
+		"cat_id" : 1,
+		"subcat_name" :"Bacend"
+	},
+	{
+		"subcat_id" : 3,
+		"cat_id" : 1,
+		"subcat_name" :"UX/UIX"
+	},
+	{
+		"subcat_id" : 4,
+		"cat_id" : 2,
+		"subcat_name" :"English teacher"
+	},
+	{
+		"subcat_id" : 5,
+		"cat_id" : 3,
+		"subcat_name" :"Bugalter"
+	},
+	{
+		"subcat_id" : 6,
+		"cat_id" : 4,
+		"subcat_name" :"Pul marketingi"
+	}
+]
