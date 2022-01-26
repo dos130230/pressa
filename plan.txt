@@ -1,0 +1,99 @@
+data-model
+    1.Users file
+    2.Posts file
+    3.catigoris
+    4.subCatigoris
+    5.rols
+    
+        * catigoris
+              [
+                {
+                    cat_id : 1,
+                    cat_name : "Architecture and Construction"
+                },
+                {
+                    cat_id : 2,
+                    cat_name : "Business and Finance"
+                }
+              ]
+              
+        *subCatigoris
+            [
+                {
+                    subcat_id : 1,
+                    cat_id : 1,
+                    subcat_name : "Architect"
+                    
+                },
+                {
+                    subcat_id : 2,
+                    cat_id : 2,
+                    subcat_name :"Human Resources Manager"
+                    
+                }
+            ]
+    
+   
+        * rols
+              [
+                {
+                    admin_id : 1,
+                    admin_name : "Dostonbek",
+                    admin_fname : "Uktamov",
+                    admin_phone : 998901328277,
+                    admin_password : "50271ae3e11cc8886b2d98fcdb6e1a5cefe4672359f56d2db07b069a8a846356",
+                    
+                    
+                }    
+              ]
+    
+        *users
+            [
+                {
+                    user_id : 1,
+                    user_name : "Dostonbek",
+                    user_fname : "Uktamov",
+                    user_job :  Business and Finance/Human Resources Manager/spicer,
+                    user_phone : 998901328277,
+                }
+            ]
+         
+         
+         
+         
+         *posts 
+            [
+                {
+                    post_id : 1,
+                    post_thema : "NodeJs Texologyasi",
+                    post_comment : "1-yil ichida dasturlashni chuqur o'rganish",
+                    post_more : "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    post_views : 10,
+                    post_img : "/images/ali.jpg",
+                    type : "online",
+                    meeting_place : "http://googleMap.......",
+                    start_data : "13.02.2022 | 12:49",
+                    is_accept : false,
+                    user_id : 1
+                }
+            ]
+     
+     
+            
+routes
+
+    */cards
+        GET /  --> hamma cardlar ichida (is_accept) kaliti true bo'lganini olib beradi
+        
+        
+    */poster
+        GET    /post_id --> bu routda (shu e'lon haqida batafsil bilish) va shu bilan ko'rilganlar soniga 1 qo'shadi
+        POST   /        --> (FormData())  bu rout elon qo'shish uchun
+        PUT    /        --> (post_id) bu amalda admin paneldan is_accept kalitini 
+                                                                        ozgartishish mumkun bunda u cardlarda ko'rinadi
+        DELETE /        --> (new Date()) bu amalda har yarim soatda sorov
+                                                         yuboradi ichidagi vaqtni solishtiradi o'tgan  bo'lsa ochiradi
+
+    *auth 
+        LOGIN / userni admin yoki admin emasligini tekshiradi
+    
