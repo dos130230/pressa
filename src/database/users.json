@@ -4,6 +4,13 @@
 		"user_name" : "Dostonbek",
 		"user_fname" : "Uktamov",
 		"user_job" :  "Business and Finance/Human Resources Manager/spicer",
-		"user_phone" : "998901328277",
+		"user_phone" : "998901328277"
+	},
+	{
+		"user_id" : 2,
+		"user_name" : "Dilshod",
+		"user_fname" : "Elturayev",
+		"user_job" :  "Business and Finance/Human Resources Manager/spicer",
+		"user_phone" : "998901328277"
 	}
 ]

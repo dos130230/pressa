@@ -87,7 +87,6 @@ routes
         
         
     */poster
-        GET    /post_id --> bu routda (shu e'lon haqida batafsil bilish) va shu bilan ko'rilganlar soniga 1 qo'shadi
         POST   /        --> (FormData())  bu rout elon qo'shish uchun
         PUT    /        --> (post_id) bu amalda admin paneldan is_accept kalitini 
                                                                         ozgartishish mumkun bunda u cardlarda ko'rinadi

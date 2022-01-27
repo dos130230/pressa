@@ -2,7 +2,7 @@
   "name": "bacend",
   "version": "1.0.0",
   "description": "",
-  "type" :"module",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "node ./src/server.js",
@@ -12,6 +12,7 @@
   "author": "Dostonbek O'ktamov and Bahodir Omonov",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1"
   }
 }
