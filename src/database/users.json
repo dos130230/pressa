@@ -1,16 +1,16 @@
 [
-	{
-		"user_id" : 1,
-		"user_name" : "Dostonbek",
-		"user_fname" : "Uktamov",
-		"user_job" :  "Business and Finance/Human Resources Manager/spicer",
-		"user_phone" : "998901328277"
-	},
-	{
-		"user_id" : 2,
-		"user_name" : "Dilshod",
-		"user_fname" : "Elturayev",
-		"user_job" :  "Business and Finance/Human Resources Manager/spicer",
-		"user_phone" : "998901328277"
-	}
+    {
+        "user_id": 1,
+        "user_name": "Claudetta",
+        "user_fname": "Barock",
+        "user_job": "Assistant Professor",
+        "user_phone": "767-689-5165"
+    },
+    {
+        "user_id": 2,
+        "user_name": "Jacinda",
+        "user_fname": "Pley",
+        "user_job": "Research Assistant III",
+        "user_phone": "605-768-0795"
+    }
 ]

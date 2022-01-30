@@ -14,18 +14,6 @@
     {
         "cat_id" : 4,
         "cat_name" : "Marketin"
-    },
-    {
-        "cat_id" : 5,
-        "cat_name" : "Iqtisodiyot"
-    },
-    {
-        "cat_id" : 6,
-        "cat_name" : "Dizayn"
-    },
-    {
-        "cat_id" : 7,
-        "cat_name" : "Sog'likni saqlash"
     }
 
 ]

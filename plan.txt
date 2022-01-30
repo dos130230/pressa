@@ -84,10 +84,14 @@ routes
 
     */cards
         GET /  --> hamma cardlar ichida (is_accept) kaliti true bo'lganini olib beradi
+
+    */catigor
+        GET / katiogoryalarini beradi
         
         
     */poster
         POST   /        --> (FormData())  bu rout elon qo'shish uchun
+        
         PUT    /        --> (post_id) bu amalda admin paneldan is_accept kalitini 
                                                                         ozgartishish mumkun bunda u cardlarda ko'rinadi
         DELETE /        --> (new Date()) bu amalda har yarim soatda sorov
@@ -96,3 +100,23 @@ routes
     *auth 
         LOGIN / userni admin yoki admin emasligini tekshiradi
     
+
+
+
+
+formdata 
+    user_name
+    user_fname
+    user_job
+    user_phone
+
+    post_thema
+    post_comment
+    post_more
+
+    start_data   ----Tue Jan 11 2022 18:37:00 GMT+0500 (2008/10/01 12:25:45) 
+    catigories
+    subcatigories
+    type
+    meeting_place
+    file -----buffer yuboriladi
