@@ -7,15 +7,15 @@ const myLength = (data,name,max) => {
 
 
 
-const fileValdate = (file) => {
-	let {originalname,mimetype,buffer,size} = file
+// const fileValdate = (file) => {
+// 	let {originalname,mimetype,buffer,size} = file
 
-	//file valdeate 
-	if(!file) throw new Error("file is required!")
-	if((size/1024**2 | 0) >10) throw new Error("file size max 10 MB")
-	if(!["image/jpg","image/png","image/jpeg"].includes(mimetype)) throw new Error("file type jpg or png only required!")
+// 	//file valdeate 
+// 	if(!file) throw new Error("file is required!")
+// 	if((size/1024**2 | 0) >10) throw new Error("file size max 10 MB")
+// 	if(!["image/jpg","image/png","image/jpeg"].includes(mimetype)) throw new Error("file type jpg or png only required!")
 	
-}
+// }
 
 const PosterValidate = (req,res,next) => {
 	try{
@@ -63,7 +63,11 @@ const PosterValidate = (req,res,next) => {
 		}
 
 		// file validate
-		fileValdate(req.file)
+		let {originalname,mimetype,buffer,size} = req.file
+		if(!req.file) throw new Error("file is required!")
+		if((size/1024**2 | 0) >10) throw new Error("file size max 10 MB")
+		if(!["image/jpg","image/png","image/jpeg"].includes(mimetype)) throw new Error("file type jpg or png only required!")
+	
 		
 		return next()
 

@@ -81,9 +81,12 @@ data-model
      
             
 routes
+    * hostname + /images/imageName.jpg  rasmni berish uchun link
+
 
     */cards
         GET /  --> hamma cardlar ichida (is_accept) kaliti true bo'lganini olib beradi
+        GET /post_id  --> id li postni beradi va korilganlar sonini bittaga oshiradi
 
     */catigor
         GET / katiogoryalarini beradi
@@ -94,11 +97,14 @@ routes
         
         PUT    /        --> (post_id) bu amalda admin paneldan is_accept kalitini 
                                                                         ozgartishish mumkun bunda u cardlarda ko'rinadi
-        DELETE /        --> (new Date()) bu amalda har yarim soatda sorov
-                                                         yuboradi ichidagi vaqtni solishtiradi o'tgan  bo'lsa ochiradi
+        
+        DELETE /        --> bunda admin malumotni bazadan o'chrib tashlaydi
 
     *auth 
         LOGIN / userni admin yoki admin emasligini tekshiradi
+
+    *intervalDate 
+        GET / -> bunda routda otib ketgan malumotlari ochrib tashlaydi
     
 
 
