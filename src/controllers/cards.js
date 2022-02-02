@@ -13,7 +13,7 @@ const GET = async (req,res,next) => {
 				to_char(p.start_data, 'YYYY-MM-DD hh:mm:ss') as start_data
 			FROM posters as p
 			left join users as u on u.user_id = p.user_id
-			where p.is_accept = true and
+			where p.is_accept = 2 and
 				case
 					when $1 > 0 then p.post_id = $1 
 					else true
@@ -51,6 +51,7 @@ const GET = async (req,res,next) => {
 const ADMIN = async (req,res,next) => {
 	try{
 		let {post_id} = req.params
+		let  is_accept  = req.headers.is_accept || 1
 		let response = await req.fetch(
 			`
 			SELECT 
@@ -59,13 +60,14 @@ const ADMIN = async (req,res,next) => {
 				to_char(p.start_data, 'YYYY-MM-DD hh:mm:ss') as start_data
 			FROM posters as p
 			left join users as u on u.user_id = p.user_id
-			where p.is_accept = false and
+			where p.is_accept = $2 and
 				case
 					when $1 > 0 then p.post_id = $1 
 					else true
 				end
 			order by p.post_id asc;
-			`,post_id)
+			`,post_id,is_accept)
+
 		res.json(response)
 	}catch(error){
 		return next(error)

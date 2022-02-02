@@ -6,11 +6,7 @@ const PAGINATION = {
 }
 
 const POOL = {
-    host: 'localhost',
-    port: 5432,
-    user: 'postgres',
-    password: '130230',
-    database: 'demo_db'
+    connectionString : "postgres://gomjverr:c0aXJeJFFJBcZu60BjozWH-xwoi-8dRL@john.db.elephantsql.com/gomjverr"
 }
 export default {
 	PORT,

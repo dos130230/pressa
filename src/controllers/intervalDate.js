@@ -8,7 +8,7 @@ const GET = async (req,res,next)=> {
 				p.post_id
 				from posters as p
 				where
-				p.start_data >= now()
+				now() >= p.start_data
 			),
 			post as (
 			DELETE FROM posters

@@ -22,13 +22,15 @@ const POST = async (req,res,next) => {
 		await req.fetch(`
 				insert into posters (post_thema, post_comment, post_more, post_views, post_img,type, meeting_place, start_data, is_accept, user_id,post_subcat)
 					values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11);
-		`,post_thema , post_comment , post_more , 0 , '/images/'+fileName , type , meeting_place , start_data , false , +max+1,subcatigories)
+		`,post_thema , post_comment , post_more , 0 , '/images/'+fileName , type , meeting_place , start_data ,1, +max+1,subcatigories)
 
 		return res.json({
+
 			message:"Post send!"
 		})
 
 		}catch(error){
+			console.log(error)
 			return next(error)
 	}
 }
@@ -37,10 +39,10 @@ const POST = async (req,res,next) => {
 const PUT = async (req,res,next) => {
 	try{
 		let {post_id} = req.body
-		let response = await req.fetch('update posters as p set is_accept = true where p.post_id = $1',post_id)
+		let response = await req.fetch('update posters as p set is_accept = 2 where p.post_id = $1',post_id)
 		
 		return res.status(200).json({
-			message : "watching post!"
+			message : "Qabul qilindi!"
 		})
 
 	}catch(error){
@@ -48,28 +50,45 @@ const PUT = async (req,res,next) => {
 	}
 }
 
-const DELETE = (req,res) => {
+const DELETE = async (req,res,next) => {
 	try{
 		let {post_id} = req.body
+		let response = await req.fetch('update posters as p set is_accept = 3 where p.post_id = $1',post_id)
 		
-		let posts = req.select("posters")
-		let users = req.select("users")
-
-		let index = posts.findIndex(post => post.post_id == post_id)
-		if(index == -1) throw new ClentError(400,"invalit post_id!")
-
-		let deletPost = posts.splice(index,1)
-		if(deletPost[0].is_accept) throw new ClentError(400,"wrong is_accept true!")
-		req.insert("posters",posts)
-
 		return res.status(200).json({
-			message : "watching post!"
+			message : "Bekor qilindi!"
 		})
 
 	}catch(error){
 		return next(error)
 	}
 }
+
+
+// const DELETE = (req,res) => {
+// 	try{
+// 		let {post_id} = req.body
+		
+// 		let posts = req.select("posters")
+// 		let users = req.select("users")
+
+// 		let index = posts.findIndex(post => post.post_id == post_id)
+// 		if(index == -1) throw new ClentError(400,"invalit post_id!")
+
+// 		let deletPost = posts.splice(index,1)
+// 		if(deletPost[0].is_accept) throw new ClentError(400,"wrong is_accept true!")
+// 		req.insert("posters",posts)
+
+// 		return res.status(200).json({
+// 			message : "watching post!"
+// 		})
+
+// 	}catch(error){
+// 		return next(error)
+// 	}
+// }
+
+
 export default {
 	POST,
 	PUT,

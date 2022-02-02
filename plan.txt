@@ -57,10 +57,7 @@ data-model
                     user_phone : 998901328277,
                 }
             ]
-         
-         
-         
-         
+             
          *posts 
             [
                 {
@@ -73,7 +70,7 @@ data-model
                     type : "online",
                     meeting_place : "http://googleMap.......",
                     start_data : "13.02.2022 | 12:49",
-                    is_accept : false,
+                    is_accept : 1,
                     user_id : 1
                 }
             ]
@@ -85,20 +82,21 @@ routes
 
 
     */cards
-        GET /  --> hamma cardlar ichida (is_accept) kaliti true bo'lganini olib beradi
+        GET /         --> hamma cardlar ichida (is_accept) kaliti 1 bo'lganini olib beradi
         GET /post_id  --> id li postni beradi va korilganlar sonini bittaga oshiradi
 
     */catigor
-        GET / katiogoryalarini beradi
+        GET /     katiogoryalarini beradi
+        GET /:id  shun id dagi sub categorialarni beradi
         
         
     */poster
-        POST   /        --> (FormData())  bu rout elon qo'shish uchun
+        POST   / --> (FormData())  bu rout elon qo'shish uchun  
+
+        PUT    / --> (post_id) bunda header bolimida (post_id yuboriladi bunda u post qabul qilinadi
+        )
         
-        PUT    /        --> (post_id) bu amalda admin paneldan is_accept kalitini 
-                                                                        ozgartishish mumkun bunda u cardlarda ko'rinadi
-        
-        DELETE /        --> bunda admin malumotni bazadan o'chrib tashlaydi
+        DELETE /    --> bunda ham hearders qismiga (post_id) yuboriladi bunda uni qabul qilmaydi
 
     *auth 
         LOGIN / userni admin yoki admin emasligini tekshiradi
@@ -106,25 +104,21 @@ routes
     *intervalDate 
         GET / -> bunda routda otib ketgan malumotlari ochrib tashlaydi
     
-
-
-
-
 formdata 
     user_name
     user_fname
     user_job
-    user_phone
+    user_phone   998901328277  -------shu korinishda kiritamiz
 
     post_thema
     post_comment
     post_more
 
-    start_data   ----Tue Jan 11 2022 18:37:00 GMT+0500 (2008/10/01 12:25:45) 
-    catigories
-    subcatigories
-    type
-    meeting_place
+    start_data   ----(2008/10/01 12:25:45) 
+    catigories ------nom
+    subcatigories  --------nom
+    type  -----------online bolsa 1 offline bolsa 2 kiritiladi
+    meeting_place  ------link beriladi
     file -----buffer yuboriladi
 
 
