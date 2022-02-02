@@ -150,3 +150,12 @@ formdata
         429 Too Many Requests
         431 Request Header Fields Too Large
         451 Unavailable For Legal Reasons
+
+
+
+
+search tizmi (search=ddfdfdfdf) yozilsa qidiradi
+type=1 online type=2 ofline
+catigor= subcategorya nomi bilan
+page page olib beradi
+limit shunchadan olib beradi

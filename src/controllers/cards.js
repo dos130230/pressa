@@ -1,10 +1,13 @@
 import jwt from "../utils/jwt.js"
 import config from "../../config.js"
+import {ServerError,ClentError} from '../utils/erorHandling.js'
 
 const GET = async (req,res,next) => {
 	try {
 		let {post_id} = req.params
 		let {search,type,catigor,page=config.PAGINATION.page,limit=config.PAGINATION.limit} = req.query
+		if(post_id && !parseInt(post_id)) throw new ClentError(400,"invalit post_id!")
+		
 		let response = await req.fetch(
 			`
 			SELECT 
@@ -51,7 +54,8 @@ const GET = async (req,res,next) => {
 const ADMIN = async (req,res,next) => {
 	try{
 		let {post_id} = req.params
-		let  is_accept  = req.headers.is_accept || 1
+		if(post_id && !parseInt(post_id)) throw new ClentError(400,"invalit post_id!")
+		let is_accept  = req.headers.is_accept || 1
 		let response = await req.fetch(
 			`
 			SELECT 

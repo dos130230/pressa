@@ -1,5 +1,4 @@
 import jwt from "../utils/jwt.js"
-
 import {ServerError,ClentError} from '../utils/erorHandling.js'
 
 const LOGIN = async (req,res,next) => {
@@ -7,6 +6,7 @@ const LOGIN = async (req,res,next) => {
 		
 		let {username, password} = req.body
 		if(!username || !password) throw new ClentError(400,"username and password required!")
+		if(username.length > 50 || password.length >50) throw new ClentError(400,"username and password big symbol!")
 
 		let found = await req.fetch(`
 			SELECT admin_id,admin_name

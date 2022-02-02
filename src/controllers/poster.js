@@ -39,6 +39,7 @@ const POST = async (req,res,next) => {
 const PUT = async (req,res,next) => {
 	try{
 		let {post_id} = req.body
+		if(!post_id) throw new ClentError(400,"post_id is required!")
 		let response = await req.fetch('update posters as p set is_accept = 2 where p.post_id = $1',post_id)
 		
 		return res.status(200).json({
@@ -53,6 +54,7 @@ const PUT = async (req,res,next) => {
 const DELETE = async (req,res,next) => {
 	try{
 		let {post_id} = req.body
+		if(!post_id) throw new ClentError(400,"post_id is required!")
 		let response = await req.fetch('update posters as p set is_accept = 3 where p.post_id = $1',post_id)
 		
 		return res.status(200).json({
@@ -63,30 +65,6 @@ const DELETE = async (req,res,next) => {
 		return next(error)
 	}
 }
-
-
-// const DELETE = (req,res) => {
-// 	try{
-// 		let {post_id} = req.body
-		
-// 		let posts = req.select("posters")
-// 		let users = req.select("users")
-
-// 		let index = posts.findIndex(post => post.post_id == post_id)
-// 		if(index == -1) throw new ClentError(400,"invalit post_id!")
-
-// 		let deletPost = posts.splice(index,1)
-// 		if(deletPost[0].is_accept) throw new ClentError(400,"wrong is_accept true!")
-// 		req.insert("posters",posts)
-
-// 		return res.status(200).json({
-// 			message : "watching post!"
-// 		})
-
-// 	}catch(error){
-// 		return next(error)
-// 	}
-// }
 
 
 export default {
