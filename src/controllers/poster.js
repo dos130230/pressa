@@ -1,9 +1,9 @@
 import path from "path"
 import fs from "fs"
+import {ServerError,ClentError} from '../utils/erorHandling.js'
 
 
-
-const POST = (req,res,next) => {
+const POST = async (req,res,next) => {
 	try{
 		let {originalname,mimetype,buffer,size} = req.file
 		let {user_name, user_fname,user_job,user_phone, post_thema, post_comment,type, post_more, start_data, catigories, subcatigories, meeting_place} = req.body
@@ -12,69 +12,41 @@ const POST = (req,res,next) => {
 		let filePaht = path.join(process.cwd(),"files","images",fileName)
 
 		fs.writeFileSync(filePaht,buffer)
-		let users = req.select("users")
-		let posts = req.select("posters")
+		const {max} = (await req.fetch("select max(user_id) from users"))[0]
+		
+		await req.fetch(`
+				insert into users (user_name, user_fname, user_job, user_phone) values ($1,$2,$3,$4);
+			`,user_name, user_fname, user_job, user_phone)
 
-		let newUser = {
-			user_id : users.length ? users[users.length-1].user_id+1 : 1,
-			user_name,
-			user_fname,
-			user_job,
-			user_phone
-		}
+	
+		await req.fetch(`
+				insert into posters (post_thema, post_comment, post_more, post_views, post_img,type, meeting_place, start_data, is_accept, user_id,post_subcat)
+					values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11);
+		`,post_thema , post_comment , post_more , 0 , '/images/'+fileName , type , meeting_place , start_data , false , +max+1,subcatigories)
 
-		let newPost = {
-			post_id : posts.length ? posts[posts.length-1].post_id+1 : 1,
-			post_thema,
-			post_comment,
-			post_more,
-			post_views : 0,
-			post_img : "/images/"+fileName,
-			type,
-			meeting_place,
-			start_data,
-			is_accept : false,
-			user_id : newUser.user_id,
-		}
-
-		posts.push(newPost)
-		users.push(newUser)
-
-		req.insert("users",users)
-		req.insert("posters",posts)
-
-		res.json({
+		return res.json({
 			message:"Post send!"
 		})
 
-		
-
-	}catch(error){
-		console.log(error)
+		}catch(error){
+			return next(error)
 	}
 }
 
 
-const PUT = (req,res) => {
+const PUT = async (req,res,next) => {
 	try{
 		let {post_id} = req.body
+		let response = await req.fetch('update posters as p set is_accept = true where p.post_id = $1',post_id)
 		
-		let posts = req.select("posters")
-		let found = posts.find(post => post.post_id == post_id)
-		if(!found) throw new Error("invalit post_id!")
-		found.is_accept = true
-
-		req.insert("posters",posts)
-
-		res.status(200).json({
+		return res.status(200).json({
 			message : "watching post!"
 		})
 
 	}catch(error){
-		console.log(error)
+		return next(error)
 	}
 }
-
 
 const DELETE = (req,res) => {
 	try{
@@ -84,19 +56,18 @@ const DELETE = (req,res) => {
 		let users = req.select("users")
 
 		let index = posts.findIndex(post => post.post_id == post_id)
-		if(index == -1) throw new Error("invalit post_id!")
+		if(index == -1) throw new ClentError(400,"invalit post_id!")
 
 		let deletPost = posts.splice(index,1)
-		if(deletPost[0].is_accept) throw new Error("wrong is_accept true!")
+		if(deletPost[0].is_accept) throw new ClentError(400,"wrong is_accept true!")
 		req.insert("posters",posts)
 
-		res.status(200).json({
+		return res.status(200).json({
 			message : "watching post!"
 		})
 
 	}catch(error){
-		console.log(error)
-		res.send(error.message)
+		return next(error)
 	}
 }
 export default {

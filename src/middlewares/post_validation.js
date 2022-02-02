@@ -1,21 +1,10 @@
+import {ServerError,ClentError} from '../utils/erorHandling.js'
 
 const myLength = (data,name,max) => {
 
-	if(!data) throw new Error(`${name} is required!`)
-	if(data.length<3 || data.length>max) throw new Error(`${name} length min 3 max 50 simbol!`) 	
+	if(!data) throw new ClentError(400,`${name} is required!`)
+	if(data.length<3 || data.length>max) throw new ClentError(413,`${name} length min 3 max 50 simbol!`) 	
 }
-
-
-
-// const fileValdate = (file) => {
-// 	let {originalname,mimetype,buffer,size} = file
-
-// 	//file valdeate 
-// 	if(!file) throw new Error("file is required!")
-// 	if((size/1024**2 | 0) >10) throw new Error("file size max 10 MB")
-// 	if(!["image/jpg","image/png","image/jpeg"].includes(mimetype)) throw new Error("file type jpg or png only required!")
-	
-// }
 
 const PosterValidate = (req,res,next) => {
 	try{
@@ -30,8 +19,8 @@ const PosterValidate = (req,res,next) => {
 		myLength(user_job,"user_job",50)
 
 		//contact validate
-		if(!user_phone) throw new Error("contact is required!")
-		if(!(/^998[389][012345789][0-9]{7}$/).test(user_phone)) throw new Error("invalit contact number!")
+		if(!user_phone) throw new ClentError(400,"contact is required!")
+		if(!(/^998[389][012345789][0-9]{7}$/).test(user_phone)) throw new ClentError(400,"invalit contact number!")
 
 		// post_theme validate
 		myLength(post_thema,"theme",100)
@@ -43,11 +32,15 @@ const PosterValidate = (req,res,next) => {
 		//more text validate
 		myLength(post_more,"more_comment",1200)
 
+		//type validate
+		if(!type) throw new ClentError(400,"type is required!")
+		if(!['1','2'].includes(type)) throw new ClentError(400,"type onl 1 and 2 required!")
+
 
 		// data validate
-		if(!start_data) throw new Error("date and time required!")
+		if(!start_data) throw new ClentError(400,"date and time required!")
 		if(!(/^([2][0]\d{2}\/([0]\d|[1][0-2])\/([0-2]\d|[3][0-1]))$|^([2][0]\d{2}\/([0]\d|[1][0-2])\/([0-2]\d|[3][0-1])\s([0-1]\d|[2][0-3])\:[0-5]\d\:[0-5]\d)$/).test(start_data)){
-			throw new Error("invalit data or time!")
+			throw new ClentError(400,"invalit data or time!")
 		}
 
 		//catigora validate
@@ -57,23 +50,22 @@ const PosterValidate = (req,res,next) => {
 		myLength(subcatigories,"subcatigories",50)
 
 		// metting place validate
-		if(!meeting_place) throw new Error("link is required!")
+		if(!meeting_place) throw new ClentError(400,"link is required!")
 		if(!(/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/).test(meeting_place)){
 			throw new Error("invalit link or location!")
 		}
 
 		// file validate
 		let {originalname,mimetype,buffer,size} = req.file
-		if(!req.file) throw new Error("file is required!")
-		if((size/1024**2 | 0) >10) throw new Error("file size max 10 MB")
-		if(!["image/jpg","image/png","image/jpeg"].includes(mimetype)) throw new Error("file type jpg or png only required!")
+		if(!req.file) throw new ClentError(400,"file is required!")
+		if((size/1024**2 | 0) >10) throw new ClentError(413,"file size max 10 MB")
+		if(!["image/jpg","image/png","image/jpeg"].includes(mimetype)) throw new ClentError(415,"file type jpg or png only required!")
 	
 		
 		return next()
 
 	}catch(error){
-		console.log(error)
-		// res.send(error.message)
+		return next(error)
 	}
 }
 

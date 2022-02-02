@@ -1,9 +1,10 @@
 import jwt from "../utils/jwt.js"
+import {ServerError,ClentError} from '../utils/erorHandling.js'
 
 const authToken = (req,res,next) => {
 	try{
 		let token  = req.headers.token
-		if(!token) throw new Error("token is required!")
+		if(!token) throw new ClentError(400,"token is required!")
 		jwt.verify(token,res)
 
 	return next()

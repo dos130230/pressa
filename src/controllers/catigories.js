@@ -1,20 +1,28 @@
-const GET = (req,res,next)=> {
-	try{
-		let catigor = req.select("categories")
-		let subcatigor = req.select("subcategories")
-		for(let cat  of catigor){
-			let arr = []
-			for (let sub of subcatigor){
-				if(cat.cat_id == sub.cat_id) arr.push(sub.subcat_name)
-			}
-			cat.subcatigor = arr
-		}
 
-		res.json(catigor)
+const GET = async(req,res,next)=> {
+	try{
+		const {cat_id} = req.params
+		const catigor = await req.fetch(`
+			select
+ 			cat.*,
+ 			json_agg(sub.subcat_name) as subcat
+ 			from categories as cat 
+ 			left join subcategories as sub on sub.cat_id = cat.cat_id
+ 			where
+ 			case
+ 				when $1 > 0 then cat.cat_id = $1
+ 				else true	 
+ 			end
+ 			group by cat.cat_id;
+
+		`,cat_id)
+
+		return res.json(catigor)
 
 	}catch(error){
-		console.log(error)
+		return next(error)
 	}
+
 }
 
 export default {

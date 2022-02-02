@@ -1,6 +1,10 @@
 import express from "express"
 import config from "../config.js"
 import path from "path"
+import fs from "fs"
+
+import {ServerError,ClentError} from './utils/erorHandling.js'
+import timeConverter from './utils/dataConvert.js'
 
 const app = express()
 
@@ -9,11 +13,10 @@ app.use(express.json())
 // static images file
 app.use(express.static(path.join(process.cwd(),"files")))
 
-//loading middlewares
-import middleware from "./middlewares/rw.js"
-app.use(middleware)
-
-
+//loading middlewares postgers 
+import module from "./middlewares/postgres.js"
+// console.log(module)
+app.use(module)
 
 
 
@@ -37,15 +40,19 @@ import authRouter from "./routers/auth.js"
 app.use ("/auth",authRouter)
 
 
+// error handling 
+app.use( (error,req,res,next) => {
+	
+	if([400,401,403,404,409,413,415].includes(error.status)) return res.status(error.status).send(error)
 
+		fs.appendFileSync(
+			path.join(process.cwd(), 'log.txt'),
+			`${timeConverter(new Date())}  ${req.method}  ${req.url}  "${error.message}"\n`
+			)
 
-
-
-
-
-
+	return res.status(500).send(new ServerError(""))
+})
 
 
 app.listen(config.PORT, ()=> console.log("Server is running http://localhost:"+config.PORT))
 
-console.log(config)
