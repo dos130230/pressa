@@ -13,7 +13,7 @@ const GET = async (req,res,next) => {
 			SELECT 
 				u.*,
 				p.*,
-				to_char(p.start_data, 'yyyy-mm-dd hh24:mm:ss') as start_data
+				to_char(p.start_data, 'yyyy-mm-dd hh24:mi') as start_data
 			FROM posters as p
 			left join users as u on u.user_id = p.user_id
 			where p.is_accept = 2 and
@@ -34,7 +34,7 @@ const GET = async (req,res,next) => {
 					else true
 				end and
 				case
-					when length($5) > 0 then to_char(p.start_data,'yyyy-mm-dd hh24:mm:ss') ilike concat($5,'%')
+					when length($5) > 0 then to_char(p.start_data,'yyyy-mm-dd hh24:mi') ilike concat($5,'%')
 					else true 
 				end
 			order by p.start_data asc
