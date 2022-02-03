@@ -5,7 +5,7 @@ import {ServerError,ClentError} from '../utils/erorHandling.js'
 const GET = async (req,res,next) => {
 	try {
 		let {post_id} = req.params
-		let {search,type,catigor,page=config.PAGINATION.page,limit=config.PAGINATION.limit} = req.query
+		let {data,search,type,catigor,page=config.PAGINATION.page,limit=config.PAGINATION.limit} = req.query
 		if(post_id && !parseInt(post_id)) throw new ClentError(400,"invalit post_id!")
 		
 		let response = await req.fetch(
@@ -13,7 +13,7 @@ const GET = async (req,res,next) => {
 			SELECT 
 				u.*,
 				p.*,
-				to_char(p.start_data, 'YYYY-MM-DD hh:mm:ss') as start_data
+				to_char(p.start_data, 'yyyy-mm-dd hh24:mi:ss') as start_data
 			FROM posters as p
 			left join users as u on u.user_id = p.user_id
 			where p.is_accept = 2 and
@@ -32,10 +32,14 @@ const GET = async (req,res,next) => {
 				case
 					when length($4) > 0  then p.post_subcat = $4
 					else true
+				end and
+				case
+					when length($5) > 0 then to_char(p.start_data,'yyyy-mm-dd hh24:mi:ss') ilike concat($5,'%')
+					else true 
 				end
-			order by p.start_data desc
-			offset $5 limit $6;
-			`,post_id,search,type,catigor,(page - 1) * limit, limit)
+			order by p.start_data asc
+			offset $6 limit $7;
+			`,post_id,search,type,catigor,data,(page - 1) * limit, limit)
 
 		if(response.length == 1 && post_id && response[0].post_id==post_id) {
 
@@ -61,7 +65,7 @@ const ADMIN = async (req,res,next) => {
 			SELECT 
 				u.*,
 				p.*,
-				to_char(p.start_data, 'YYYY-MM-DD hh:mm:ss') as start_data
+				to_char(p.start_data,'yyyy-mm-dd hh24:mi:ss') as start_data
 			FROM posters as p
 			left join users as u on u.user_id = p.user_id
 			where p.is_accept = $2 and
