@@ -13,7 +13,7 @@ const GET = async (req,res,next) => {
 			SELECT 
 				u.*,
 				p.*,
-				to_char(p.start_data::timestamptz, 'yyyy-mm-dd hh24:mi:ss') as start_data
+				to_char(p.start_data, 'yyyy-mm-dd hh24:mi:ss') as start_data
 			FROM posters as p
 			left join users as u on u.user_id = p.user_id
 			where p.is_accept = 2 and
