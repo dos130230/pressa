@@ -39,7 +39,7 @@ const GET = async (req,res,next) => {
 				end
 			order by p.start_data asc
 			offset $6 limit $7;
-			`,post_id,search,type,catigor ||'',data,(page - 1) * limit, limit)
+			`,post_id,search,type,catigor,data,(page - 1) * limit, limit)
 
 		if(response.length == 1 && post_id && response[0].post_id==post_id) {
 
