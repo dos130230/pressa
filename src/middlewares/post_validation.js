@@ -50,10 +50,10 @@ const PosterValidate = (req,res,next) => {
 		myLength(subcatigories,"subcatigories",50)
 
 		// metting place validate
-		if(!meeting_place) throw new ClentError(400,"link is required!")
-		if(!(/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/).test(meeting_place)){
-			throw new Error("invalit link or location!")
-		}
+		// if(!meeting_place) throw new ClentError(400,"link is required!")
+		// if(!(/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/).test(meeting_place)){
+		// 	throw new Error("invalit link or location!")
+		// }
 
 		// file validate
 		let {originalname,mimetype,buffer,size} = req.file
