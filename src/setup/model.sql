@@ -13,6 +13,8 @@ CREATE TABLE rols (
 
 INSERT INTO rols(admin_name,admin_fname,admin_phone,admin_password) VALUES ('dostonbek','uktamov','99890138277',crypt('dos@1',gen_salt('bf'))); 
 
+INSERT INTO rols(admin_name,admin_fname,admin_phone,admin_password) VALUES ('bahodir','omonov','998996050616',crypt('bah@1',gen_salt('bf'))); 
+
 
 
 SELECT admin_id,admin_password
