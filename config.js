@@ -5,16 +5,16 @@ const PAGINATION = {
 	limit : 6
 }
 
-// const POOL = {
-//     connectionString : "postgres://gomjverr:c0aXJeJFFJBcZu60BjozWH-xwoi-8dRL@john.db.elephantsql.com/gomjverr"
-// }
-
 const POOL = {
-	host: 'localhost',
-    user: 'postgres',
-    password: '130230',
-    database: 'demo_db',
+    connectionString : "postgres://fpucukvo:H4KyT8T4x6Eu4YqoaSEUAixmnIhIyOCp@john.db.elephantsql.com/fpucukvo"
 }
+
+// const POOL = {
+// 	host: 'localhost',
+//     user: 'postgres',
+//     password: '130230',
+//     database: 'demo_db',
+// }
 
 export default {
 	PORT,

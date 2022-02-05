@@ -39,7 +39,8 @@ const PosterValidate = (req,res,next) => {
 
 		// data validate
 		if(!start_data) throw new ClentError(400,"date and time required!")	
-		if(!(/[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (2[0-3]|[01][0-9]):[0-5][0-9]/).test(start_data)){ // yil-oy-kun 12:34
+		if(!(/[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (2[0-3]|[01][0-9]):[0-5][0-9]/).test(start_data)){ 
+		// yil-oy-kun 12:34
 			throw new ClentError(400,"invalit data or time!")
 		}
 
@@ -50,10 +51,10 @@ const PosterValidate = (req,res,next) => {
 		myLength(subcatigories,"subcatigories",50)
 
 		// metting place validate
-		// if(!meeting_place) throw new ClentError(400,"link is required!")
-		// if(!(/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/).test(meeting_place)){
-		// 	throw new Error("invalit link or location!")
-		// }
+		if(!meeting_place) throw new ClentError(400,"link is required!")
+		if(!(/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/).test(meeting_place)){
+			throw new Error("invalit link or location!")
+		}
 
 		// file validate
 		let {originalname,mimetype,buffer,size} = req.file

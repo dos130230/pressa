@@ -31,16 +31,16 @@ CREATE TABLE users (
 	user_phone varchar(15)
 );
 
-insert into users (user_name, user_fname, user_job, user_phone) values ('Burchess', 'Jordan', 'Structural Analysis Engineer', '517-759-2296');
-insert into users (user_name, user_fname, user_job, user_phone) values ('Kemell', 'Reeba', 'Quality Control Specialist', '802-535-6552');
-insert into users (user_name, user_fname, user_job, user_phone) values ('Abrahmson', 'Benjamin', 'Design Engineer', '163-295-4919');
-insert into users (user_name, user_fname, user_job, user_phone) values ('Dugald', 'Greggory', 'Statistician III', '533-426-7618');
-insert into users (user_name, user_fname, user_job, user_phone) values ('Miettinen', 'Zorine', 'Web Developer II', '363-325-1989');
-insert into users (user_name, user_fname, user_job, user_phone) values ('Hugo', 'Babb', 'Chief Design Engineer', '297-864-3639');
-insert into users (user_name, user_fname, user_job, user_phone) values ('Shadrach', 'Cherri', 'Desktop Support Technician', '948-225-5124');
-insert into users (user_name, user_fname, user_job, user_phone) values ('Nobles', 'Constantin', 'Mechanical Systems Engineer', '619-992-9795');
-insert into users (user_name, user_fname, user_job, user_phone) values ('Stormont', 'Phillis', 'Account Coordinator', '930-339-3337');
-insert into users (user_name, user_fname, user_job, user_phone) values ('Ingon', 'Alisa', 'Staff Scientist', '550-204-3298');
+	insert into users (user_name, user_fname, user_job, user_phone) values ('Burchess', 'Jordan', 'Structural Analysis Engineer', '517-759-2296');
+	insert into users (user_name, user_fname, user_job, user_phone) values ('Kemell', 'Reeba', 'Quality Control Specialist', '802-535-6552');
+	insert into users (user_name, user_fname, user_job, user_phone) values ('Abrahmson', 'Benjamin', 'Design Engineer', '163-295-4919');
+	insert into users (user_name, user_fname, user_job, user_phone) values ('Dugald', 'Greggory', 'Statistician III', '533-426-7618');
+	insert into users (user_name, user_fname, user_job, user_phone) values ('Miettinen', 'Zorine', 'Web Developer II', '363-325-1989');
+	insert into users (user_name, user_fname, user_job, user_phone) values ('Hugo', 'Babb', 'Chief Design Engineer', '297-864-3639');
+	insert into users (user_name, user_fname, user_job, user_phone) values ('Shadrach', 'Cherri', 'Desktop Support Technician', '948-225-5124');
+	insert into users (user_name, user_fname, user_job, user_phone) values ('Nobles', 'Constantin', 'Mechanical Systems Engineer', '619-992-9795');
+	insert into users (user_name, user_fname, user_job, user_phone) values ('Stormont', 'Phillis', 'Account Coordinator', '930-339-3337');
+	insert into users (user_name, user_fname, user_job, user_phone) values ('Ingon', 'Alisa', 'Staff Scientist', '550-204-3298');
 
 DROP TABLE posters CASCADE;
 CREATE TABLE posters (
