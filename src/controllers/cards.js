@@ -34,7 +34,7 @@ const GET = async (req,res,next) => {
 			offset $5 limit $6;
 			`,post_id,search,type,catigor,(page - 1) * limit, limit)
 
-		if(response.length == 1 && post_id && response[0].post_id==post_id) {
+		if( response && response.length == 1 && post_id && response[0].post_id==post_id) {
 
 			let id = (response[0].post_id)
 		     await req.fetch(`update posters set post_views=post_views+1 where post_id =$1`,+id)
