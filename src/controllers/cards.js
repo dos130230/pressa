@@ -34,7 +34,7 @@ const GET = async (req,res,next) => {
 					else true
 				end and
 				case
-					when length($5) > 0 then to_char(p.start_data,'yyyy-mm-dd HH24:MI') ilike concat($5,'%')
+					when length($5) > 0 then to_char(p.start_data,'mm-dd-yyyy HH24:MI') ilike concat($5,'%')
 					else true 
 				end
 			order by p.start_data asc
