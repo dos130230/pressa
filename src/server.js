@@ -45,6 +45,7 @@ app.use ("/auth",authRouter)
 // error handling 
 app.use( (error,req,res,next) => {
 	
+	res.send(error)
 	if([400,401,403,404,409,413,415].includes(error.status)) return res.status(error.status).send(error)
 
 		fs.appendFileSync(
