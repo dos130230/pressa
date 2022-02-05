@@ -1,7 +1,11 @@
 
+import {ServerError,ClentError} from '../utils/erorHandling.js'
+
+
 const GET = async(req,res,next)=> {
 	try{
 		const {cat_id} = req.params
+		if(cat_id && !parseInt(cat_id)) throw new ClentError(400,"invalit cat_id!")
 		const catigor = await req.fetch(`
 			select
  			cat.*,

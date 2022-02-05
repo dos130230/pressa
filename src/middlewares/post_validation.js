@@ -38,8 +38,9 @@ const PosterValidate = (req,res,next) => {
 
 
 		// data validate
-		if(!start_data) throw new ClentError(400,"date and time required!")
-		if(!(/^([2][0]\d{2}\/([0]\d|[1][0-2])\/([0-2]\d|[3][0-1]))$|^([2][0]\d{2}\/([0]\d|[1][0-2])\/([0-2]\d|[3][0-1])\s([0-1]\d|[2][0-3])\:[0-5]\d\:[0-5]\d)$/).test(start_data)){
+		if(!start_data) throw new ClentError(400,"date and time required!")	
+		if(!(/[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (2[0-3]|[01][0-9]):[0-5][0-9]/).test(start_data)){ 
+		// yil-oy-kun 12:34
 			throw new ClentError(400,"invalit data or time!")
 		}
 
@@ -70,3 +71,5 @@ const PosterValidate = (req,res,next) => {
 }
 
 export default PosterValidate
+
+

@@ -33,6 +33,20 @@ CREATE TABLE users (
 	user_phone varchar(15)
 );
 
+<<<<<<< HEAD
+=======
+	insert into users (user_name, user_fname, user_job, user_phone) values ('Burchess', 'Jordan', 'Structural Analysis Engineer', '517-759-2296');
+	insert into users (user_name, user_fname, user_job, user_phone) values ('Kemell', 'Reeba', 'Quality Control Specialist', '802-535-6552');
+	insert into users (user_name, user_fname, user_job, user_phone) values ('Abrahmson', 'Benjamin', 'Design Engineer', '163-295-4919');
+	insert into users (user_name, user_fname, user_job, user_phone) values ('Dugald', 'Greggory', 'Statistician III', '533-426-7618');
+	insert into users (user_name, user_fname, user_job, user_phone) values ('Miettinen', 'Zorine', 'Web Developer II', '363-325-1989');
+	insert into users (user_name, user_fname, user_job, user_phone) values ('Hugo', 'Babb', 'Chief Design Engineer', '297-864-3639');
+	insert into users (user_name, user_fname, user_job, user_phone) values ('Shadrach', 'Cherri', 'Desktop Support Technician', '948-225-5124');
+	insert into users (user_name, user_fname, user_job, user_phone) values ('Nobles', 'Constantin', 'Mechanical Systems Engineer', '619-992-9795');
+	insert into users (user_name, user_fname, user_job, user_phone) values ('Stormont', 'Phillis', 'Account Coordinator', '930-339-3337');
+	insert into users (user_name, user_fname, user_job, user_phone) values ('Ingon', 'Alisa', 'Staff Scientist', '550-204-3298');
+
+>>>>>>> 5d11c2dc45f2bb7e56e00e1c1834c53e7c482100
 DROP TABLE posters CASCADE;
 CREATE TABLE posters (
 	post_id int generated always as identity ,
@@ -49,6 +63,7 @@ CREATE TABLE posters (
 	user_id int references users(user_id)
 );
 
+<<<<<<< HEAD
 
 
 
@@ -66,6 +81,8 @@ insert into users (user_name, user_fname, user_job, user_phone) values ('Ingon',
 
 
 
+=======
+>>>>>>> 5d11c2dc45f2bb7e56e00e1c1834c53e7c482100
 insert into posters (post_thema, post_comment, post_more, post_views, post_img, post_subcat,type, meeting_place, start_data, is_accept, user_id) values ('-1', ' ', '!@#$%^&*()', 197363, '/images/ustoz.jpg','Professor', 2, 'https://www.mockaroo.com/schemas/new', '2022-10-12', 1, 1);
 insert into posters (post_thema, post_comment, post_more, post_views, post_img, post_subcat,type, meeting_place, start_data, is_accept, user_id) values ('울란바토르', '1E2', '1E+02', 188149, '/images/ustoz.jpg','Cost Accountant', 1, 'https://www.mockaroo.com/schemas/new', '2022-09-14', 1, 2);
 insert into posters (post_thema, post_comment, post_more, post_views, post_img, post_subcat,type, meeting_place, start_data, is_accept, user_id) values ('0.00', '-1.00', 'åß∂ƒ©˙∆˚¬…æ', 11256, '/images/ustoz.jpg','Account Coordinator', 2, 'https://www.mockaroo.com/schemas/new', '2022-02-03', 1, 3);

@@ -2,6 +2,7 @@ import express from "express"
 import config from "../config.js"
 import path from "path"
 import fs from "fs"
+import cors from "cors"
 
 import {ServerError,ClentError} from './utils/erorHandling.js'
 import timeConverter from './utils/dataConvert.js'
@@ -9,6 +10,7 @@ import timeConverter from './utils/dataConvert.js'
 const app = express()
 
 app.use(express.json())
+app.use(cors())
 
 // static images file
 app.use(express.static(path.join(process.cwd(),"files")))
@@ -42,7 +44,12 @@ app.use ("/auth",authRouter)
 
 // error handling 
 app.use( (error,req,res,next) => {
+<<<<<<< HEAD
 	console.log(error)
+=======
+	
+	res.send(error)
+>>>>>>> 5d11c2dc45f2bb7e56e00e1c1834c53e7c482100
 	if([400,401,403,404,409,413,415].includes(error.status)) return res.status(error.status).send(error)
 
 		fs.appendFileSync(

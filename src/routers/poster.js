@@ -9,6 +9,7 @@ import multer from "multer"
 let imgMulter = multer()
 
 import postController from "../controllers/poster.js"
+
 router.post("/",imgMulter.single('file'),postValidator,postController.POST)
 router.put("/",authToken,postController.PUT)
 router.delete("/",authToken,postController.DELETE)
