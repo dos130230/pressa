@@ -30,7 +30,7 @@ const GET = async (req,res,next) => {
 					else true
 				end and
 				case
-					when length($4)  > 0  then p.post_subcat = $4
+					when length($4)  > 0   then p.post_subcat = $4
 					else true
 				end and
 				case
